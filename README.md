@@ -19,7 +19,9 @@ tags:
 Reproducibility artifacts for §11.6 of *UNITARES: Information-Theoretic Governance of Heterogeneous Agent Fleets* (Wang, 2026).
 
 - **Paper**: [CIRWEL/unitares-paper-v6](https://github.com/CIRWEL/unitares-paper-v6), tag `paper-v6.8.1`
-- **Concept DOI**: [10.5281/zenodo.19647159](https://doi.org/10.5281/zenodo.19647159) (resolves to latest)
+- **Paper DOI** (concept): [10.5281/zenodo.19647159](https://doi.org/10.5281/zenodo.19647159)
+- **Data DOI** (this release, v6.8.1-repro): [10.5281/zenodo.19705151](https://doi.org/10.5281/zenodo.19705151)
+- **GitHub**: [CIRWEL/unitares-repro-v6](https://github.com/CIRWEL/unitares-repro-v6)
 - **Source**: UNITARES production governance database, 30-day rolling window of `core.agent_state`
 - **License**: CC-BY-4.0 (same as paper)
 
@@ -83,6 +85,8 @@ python scripts/verdict_counterfactual.py --window-days 30 \
 
 ## Citation
 
+Cite the paper for the method, cite the dataset for the data.
+
 ```bibtex
 @article{wang2026unitares,
   author  = {Wang, Kenny},
@@ -91,5 +95,15 @@ python scripts/verdict_counterfactual.py --window-days 30 \
   version = {v6.8.1},
   doi     = {10.5281/zenodo.19647159},
   url     = {https://github.com/CIRWEL/unitares-paper-v6}
+}
+
+@dataset{wang2026unitares_repro_v6,
+  author    = {Wang, Kenny},
+  title     = {UNITARES Verdict Counterfactual — Paper v6.8 Reproducibility Kit},
+  year      = {2026},
+  version   = {v6.8.1-repro},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.19705151},
+  url       = {https://github.com/CIRWEL/unitares-repro-v6}
 }
 ```
