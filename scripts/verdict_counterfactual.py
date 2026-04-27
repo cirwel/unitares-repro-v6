@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import sys
 from collections import Counter, defaultdict
 from typing import Dict, List, Optional, Tuple
@@ -184,7 +185,8 @@ def main() -> int:
                         help="Anchor end of window at this ISO timestamp (default: now). "
                              "Use to reproduce a historical snapshot, e.g. paper v6.8 submission.")
     parser.add_argument("--db-url", type=str,
-                        default="postgresql://postgres:postgres@localhost:5432/governance")
+                        default=os.environ.get("DATABASE_URL",
+                                               "postgresql://localhost:5432/governance"))
     parser.add_argument("--csv", action="store_true",
                         help="Output CSV of all flips for further analysis")
     parser.add_argument("--output", type=str, default=None)
