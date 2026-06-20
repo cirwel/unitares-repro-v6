@@ -18,10 +18,10 @@ tags:
 
 Reproducibility artifacts for §11.6 of *UNITARES: Information-Theoretic Governance of Heterogeneous Agent Fleets* (Wang, 2026).
 
-- **Paper**: [CIRWEL/unitares-paper-v6](https://github.com/CIRWEL/unitares-paper-v6), tag `paper-v6.8.1`
+- **Paper**: [cirwel/unitares-paper-v6](https://github.com/cirwel/unitares-paper-v6), tag `paper-v6.9.1`
 - **Paper DOI** (concept): [10.5281/zenodo.19647159](https://doi.org/10.5281/zenodo.19647159)
 - **Data DOI** (this release, v6.8.1-repro): [10.5281/zenodo.19705151](https://doi.org/10.5281/zenodo.19705151)
-- **GitHub**: [CIRWEL/unitares-repro-v6](https://github.com/CIRWEL/unitares-repro-v6)
+- **GitHub**: [cirwel/unitares-repro-v6](https://github.com/cirwel/unitares-repro-v6)
 - **Source**: UNITARES production governance database, 30-day rolling window of `core.agent_state`
 - **License**: CC-BY-4.0 (same as paper)
 
@@ -40,7 +40,7 @@ The submission snapshot is within 18 rows / 0.1pp of the figures in the publishe
 
 The 2026-04-23 snapshot shows a ~15pp increase in overall flip rate over 4 days of window shift, with the Phase 2 calibration constants held frozen at v6.8 submission values. **We do not claim this is a steady-state drift signal** — a 4-day gap with ~87% window overlap is one measurement, not a trend, and the magnitude is within the kind of shift class-conditional calibration drift could absorb in a single re-calibration pass.
 
-Volume checks confirm the shift is not dominated by observer effects (daily row counts over the interval are ~800–1,500, no spikes). The per-class pattern is informative (Sentinel +25.4pp, Vigil +19.6pp, Lumen +15.8pp, default +15.3pp, **Watcher −11.3pp**). We publish both snapshots so others can reproduce §11.6 exactly *and* so the v7 empirical agenda has a concrete before/after pair to iterate from. See paper §11.6 and `unitares-v7-outline.tex` for the open questions this speaks to.
+Volume checks confirm the shift is not dominated by observer effects (daily row counts over the interval are ~800–1,500, no spikes). The per-class pattern is informative (Sentinel +25.4pp, Vigil +19.6pp, Lumen +15.8pp, default +15.3pp, **Watcher −11.3pp**). We publish both snapshots so others can reproduce §11.6 exactly.
 
 ## Columns
 
@@ -92,9 +92,9 @@ Cite the paper for the method, cite the dataset for the data.
   author  = {Wang, Kenny},
   title   = {UNITARES: Information-Theoretic Governance of Heterogeneous Agent Fleets},
   year    = {2026},
-  version = {v6.8.1},
+  version = {v6.9.1},
   doi     = {10.5281/zenodo.19647159},
-  url     = {https://github.com/CIRWEL/unitares-paper-v6}
+  url     = {https://github.com/cirwel/unitares-paper-v6}
 }
 
 @dataset{wang2026unitares_repro_v6,
@@ -104,6 +104,6 @@ Cite the paper for the method, cite the dataset for the data.
   version   = {v6.8.1-repro},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.19705151},
-  url       = {https://github.com/CIRWEL/unitares-repro-v6}
+  url       = {https://github.com/cirwel/unitares-repro-v6}
 }
 ```
