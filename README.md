@@ -69,13 +69,39 @@ pip install pandas matplotlib
 python analysis.py  # prints the Table 5 equivalent + drift comparison
 ```
 
-To regenerate either CSV from a live UNITARES instance (requires access to the governance DB):
+### ⚠️ Regeneration from the live DB no longer works — the CSVs are the record
+
+`scripts/verdict_counterfactual.py` is kept for provenance, but **do not use it to
+check these numbers.** The production database no longer retains either window.
+Measured 2026-08-14: `core.agent_state` holds **490 rows** in 2026-03-19 → 2026-04-18,
+against the 13,310 the original pull returned. There is no archive table.
+
+```
+2025-12  445     2026-04    599
+2026-01   33     2026-05 12,630
+2026-02  369     2026-06 27,868
+2026-03  344     2026-07 16,869
+```
+
+The failure is silent: the query returns a small result set and a wrong flip rate
+rather than an error. Anyone re-running the command below today gets a number that
+looks plausible and is not the published one.
 
 ```bash
+# PROVENANCE ONLY — returns a fraction of the rows as of 2026-08. Do not cite its output.
 python scripts/verdict_counterfactual.py --window-days 30 \
   --end-date "2026-04-18 21:00:00-06:00" \
   --csv --output verdict_counterfactual_v6_submission.csv
 ```
+
+The committed CSVs in `data/` are therefore the surviving row-level record of both
+windows, and `analysis.py` — which reads them and touches no database — is the
+reproduction path. A companion implementation that additionally *recomputes* the
+grounded coherence and both basin labels from these rows and the published Phase 2
+constants (rather than re-reading the stored `flipped` column) is in
+[cirwel/digital-proprioception-paper](https://github.com/cirwel/digital-proprioception-paper)
+at `analysis/phase-2-2026-04-18/reproduce_basinflip.py`; it returns 28.84% with
+26,574 of 26,584 labels reproducing exactly.
 
 ## Limitations
 
