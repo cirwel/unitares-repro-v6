@@ -27,7 +27,7 @@ Reproducibility artifacts for §11.6 of *UNITARES: Information-Theoretic Governa
 
 ## What this is
 
-The paper's §11.6 counterfactual asks: *how many basin assignments would flip if we replaced the legacy fleet-wide tanh coherence with a class-conditional grounded coherence?* On a 13,310-row production slice it reports a 28.9% flip rate, with directional bias into the `low` basin — empirical support for the homogenization-failure thesis.
+The paper's §11.6 counterfactual asks: *how many basin assignments would flip if we replaced the legacy fleet-wide tanh coherence with a class-conditional grounded coherence?* On a 13,310-row production slice it reports a 28.9% flip rate, with directional bias into the `low` basin. Both coherence values are computed from the same rows, so the flip rate measures how much basin assignment depends on the choice of coherence formula: a property of the instrument. The paper reads it as support for its homogenization-failure thesis; that reading is a research interpretation, since this kit contains no outcome labels against which either assignment could be checked.
 
 This dataset publishes two snapshots of that counterfactual:
 
@@ -46,12 +46,14 @@ Volume checks confirm the shift is not dominated by observer effects (daily row 
 
 Each row is one agent-state observation, already pseudonymized to a class label — no agent UUIDs, session IDs, prompts, or KG content are in this export.
 
+E, I, S and V are coordinates of the UNITARES runtime state estimate (current wording: the [EISV proprioception contract](https://github.com/cirwel/unitares/blob/master/docs/ontology/eisv-proprioception-contract.md)). The names label what each coordinate is computed from; they are not measurements of capacity, integrity or disorder, and no coordinate has a better or worse direction on its own.
+
 | Column | Type | Meaning |
 |---|---|---|
 | `class` | str | Agent class: `Lumen`, `Sentinel`, `Vigil`, `Watcher`, or `default` (tag-derived for non-resident agents) |
-| `E` | float ∈ [0, 1] | Energy (productive capacity) |
-| `I` | float ∈ [0, 1] | Information integrity |
-| `S` | float ∈ [0, 1] | Entropy (lower is better) |
+| `E` | float ∈ [0, 1] | Energy coordinate of the state estimate |
+| `I` | float ∈ [0, 1] | Information-integrity coordinate of the state estimate |
+| `S` | float ∈ [0, 1] | Entropy coordinate of the state estimate |
 | `V` | float ∈ [-1, 1] | Void / accumulated E–I imbalance |
 | `risk` | float ∈ [0, 1] | Risk score at time of observation |
 | `c_legacy` | float ∈ [0, 1] | Legacy fleet-wide tanh coherence |
