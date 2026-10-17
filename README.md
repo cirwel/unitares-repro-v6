@@ -18,7 +18,7 @@ tags:
 
 Reproducibility artifacts for §11.6 of *UNITARES: Information-Theoretic Governance of Heterogeneous Agent Fleets* (Wang, 2026).
 
-- **Paper**: [cirwel/unitares-paper-v6](https://github.com/cirwel/unitares-paper-v6), tag `paper-v6.9.1`
+- **Paper**: [cirwel/unitares-paper-v6](https://github.com/cirwel/unitares-paper-v6), latest published tag `paper-v6.9.3`. The kit was produced for v6.8.1; the §11.6 figures it reproduces are unchanged through v6.9.3.
 - **Paper DOI** (concept): [10.5281/zenodo.19647159](https://doi.org/10.5281/zenodo.19647159)
 - **Data DOI** (this release, v6.8.1-repro): [10.5281/zenodo.19705151](https://doi.org/10.5281/zenodo.19705151)
 - **GitHub**: [cirwel/unitares-repro-v6](https://github.com/cirwel/unitares-repro-v6)
@@ -120,7 +120,7 @@ Cite the paper for the method, cite the dataset for the data.
   author  = {Wang, Kenny},
   title   = {UNITARES: Information-Theoretic Governance of Heterogeneous Agent Fleets},
   year    = {2026},
-  version = {v6.9.1},
+  version = {v6.9.3},
   doi     = {10.5281/zenodo.19647159},
   url     = {https://github.com/cirwel/unitares-paper-v6}
 }
