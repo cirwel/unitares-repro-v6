@@ -18,7 +18,7 @@ tags:
 
 Reproducibility artifacts for §11.6 of *UNITARES: Information-Theoretic Governance of Heterogeneous Agent Fleets* (Wang, 2026).
 
-- **Paper**: [cirwel/unitares-paper-v6](https://github.com/cirwel/unitares-paper-v6), latest published tag `paper-v6.9.3`. The kit was produced for v6.8.1; the §11.6 figures it reproduces are unchanged through v6.9.3.
+- **Paper**: [cirwel/unitares-paper-v6](https://github.com/cirwel/unitares-paper-v6), published tag `paper-v6.9.4` ([version DOI](https://doi.org/10.5281/zenodo.23337711)). The kit was produced for v6.8.1. Version 6.9.4 distinguishes the original §11.6 table from the nearby export preserved here; this kit does not exactly reproduce that table.
 - **Paper DOI** (concept): [10.5281/zenodo.19647159](https://doi.org/10.5281/zenodo.19647159)
 - **Data DOI** (this release, v6.8.1-repro): [10.5281/zenodo.19705151](https://doi.org/10.5281/zenodo.19705151)
 - **GitHub**: [cirwel/unitares-repro-v6](https://github.com/cirwel/unitares-repro-v6)
@@ -27,7 +27,7 @@ Reproducibility artifacts for §11.6 of *UNITARES: Information-Theoretic Governa
 
 ## What this is
 
-The paper's §11.6 counterfactual asks: *how many basin assignments would flip if we replaced the legacy fleet-wide tanh coherence with a class-conditional grounded coherence?* On a 13,310-row production slice it reports a 28.9% flip rate, with directional bias into the `low` basin. Both coherence values are computed from the same rows, so the flip rate measures how much basin assignment depends on the choice of coherence formula: a property of the instrument. The paper reads it as support for its homogenization-failure thesis; that reading is a research interpretation, since this kit contains no outcome labels against which either assignment could be checked.
+The paper's §11.6 counterfactual asks: *how many basin assignments would flip if we replaced the legacy fleet-wide tanh coherence with a class-conditional grounded coherence?* On a 13,310-row production slice it reports a 28.9% flip rate, with directional bias into the `low` basin. Both coherence values are computed from the same rows, so the flip rate measures sensitivity of basin assignments to the replacement score: a property of the instrument. The comparison changes both the formula and calibration; it does not isolate the value of class conditioning, replay the intervention pipeline, or establish which labels are correct. This kit contains no outcome labels against which either assignment could be checked.
 
 This dataset publishes two snapshots of that counterfactual:
 
@@ -36,11 +36,11 @@ This dataset publishes two snapshots of that counterfactual:
 | `verdict_counterfactual_v6_submission.csv` | 30 days ending **2026-04-18 21:00 MDT** | 13,292 | **28.8%** |
 | `verdict_counterfactual_2026-04-23.csv` | 30 days ending **2026-04-23** | 16,879 | **44.3%** |
 
-The submission snapshot is within 18 rows / 0.1pp of the figures in the published paper (exact rerun timing varies by seconds).
+The file named `submission` is a preserved nearby pull: 18 fewer rows and approximately 0.1 percentage points fewer stored-label flips than the original paper table (13,310 rows; 28.9%). It is not an exact archive of that table. The surviving artifacts do not establish the cause of the 18-row discrepancy.
 
 The 2026-04-23 snapshot shows a ~15pp increase in overall flip rate over 4 days of window shift, with the Phase 2 calibration constants held frozen at v6.8 submission values. **We do not claim this is a steady-state drift signal** — a 4-day gap with ~87% window overlap is one measurement, not a trend, and the magnitude is within the kind of shift class-conditional calibration drift could absorb in a single re-calibration pass.
 
-Volume checks confirm the shift is not dominated by observer effects (daily row counts over the interval are ~800–1,500, no spikes). The per-class pattern is informative (Sentinel +25.4pp, Vigil +19.6pp, Lumen +15.8pp, default +15.3pp, **Watcher −11.3pp**). We publish both snapshots so others can reproduce §11.6 exactly.
+Reported daily row counts over the interval are ~800–1,500 with no spikes; that check alone does not rule out observer effects or composition changes. The per-class pattern differs (Sentinel +25.4pp, Vigil +19.6pp, Lumen +15.8pp, default +15.3pp, **Watcher −11.3pp**). We publish both snapshots so others can reproduce the stored-label analysis on these preserved exports and compare the two windows. Neither snapshot exactly reproduces the original §11.6 table.
 
 ## Columns
 
@@ -68,7 +68,7 @@ Basin thresholds and class-conditional calibration constants are in `scripts/ver
 
 ```bash
 pip install pandas matplotlib
-python analysis.py  # prints the Table 5 equivalent + drift comparison
+python analysis.py  # summarizes the preserved nearby export + window comparison
 ```
 
 ### ⚠️ Regeneration from the live DB no longer works — the CSVs are the record
@@ -98,7 +98,8 @@ python scripts/verdict_counterfactual.py --window-days 30 \
 
 The committed CSVs in `data/` are therefore the surviving row-level record of both
 windows, and `analysis.py` — which reads them and touches no database — is the
-reproduction path. A companion implementation that additionally *recomputes* the
+reproduction path for those exports, not for the missing original table. A companion
+implementation that additionally *recomputes* the
 grounded coherence and both basin labels from these rows and the published Phase 2
 constants (rather than re-reading the stored `flipped` column) is in
 [cirwel/digital-proprioception-paper](https://github.com/cirwel/digital-proprioception-paper)
@@ -109,7 +110,7 @@ at `analysis/phase-2-2026-04-18/reproduce_basinflip.py`; it returns 28.84% with
 
 - Fleet composition is UNITARES-specific (five resident agents + ephemeral coding assistants + embodied Lumen). The absolute flip rates are not directly transferable to other fleets; the *method* is.
 - Paper §12.5 (write-path hygiene) and §11.7 (identity system maturity) describe known caveats in the underlying trajectory data. Read both sections before citing these numbers in derivative work.
-- Class-conditional calibration constants in the script are frozen at v6.8 submission. Regenerating the 2026-04-23 snapshot against the *current* production calibration (not frozen) would yield a different number — we deliberately use the frozen constants to isolate fleet drift from calibration drift.
+- Class-conditional calibration constants in the script are frozen at v6.8 submission. Regenerating the 2026-04-23 snapshot against the *current* production calibration (not frozen) would yield a different number — holding these constants fixed removes recalibration as a changing input between the two exports, but does not identify the cause of their difference.
 
 ## Citation
 
@@ -120,8 +121,8 @@ Cite the paper for the method, cite the dataset for the data.
   author  = {Wang, Kenny},
   title   = {UNITARES: Information-Theoretic Governance of Heterogeneous Agent Fleets},
   year    = {2026},
-  version = {v6.9.3},
-  doi     = {10.5281/zenodo.19647159},
+  version = {v6.9.4},
+  doi     = {10.5281/zenodo.23337711},
   url     = {https://github.com/cirwel/unitares-paper-v6}
 }
 
