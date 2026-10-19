@@ -38,7 +38,7 @@ This dataset publishes two snapshots of that counterfactual:
 
 The file named `submission` is a preserved nearby pull: 18 fewer rows and approximately 0.1 percentage points fewer stored-label flips than the original paper table (13,310 rows; 28.9%). It is not an exact archive of that table. The surviving artifacts do not establish the cause of the 18-row discrepancy.
 
-The 2026-04-23 snapshot shows a ~15pp increase in overall flip rate over 4 days of window shift, with the Phase 2 calibration constants held frozen at v6.8 submission values. **We do not claim this is a steady-state drift signal** — a 4-day gap with ~87% window overlap is one measurement, not a trend, and the magnitude is within the kind of shift class-conditional calibration drift could absorb in a single re-calibration pass.
+The 2026-04-23 snapshot shows a ~15pp increase in overall flip rate over 4 days of window shift, with the Phase 2 calibration constants held frozen at v6.8 submission values. **We do not claim this is a steady-state drift signal** — a 4-day gap with ~87% window overlap is one measurement, not a trend.
 
 Reported daily row counts over the interval are ~800–1,500 with no spikes; that check alone does not rule out observer effects or composition changes. The per-class pattern differs (Sentinel +25.4pp, Vigil +19.6pp, Lumen +15.8pp, default +15.3pp, **Watcher −11.3pp**). We publish both snapshots so others can reproduce the stored-label analysis on these preserved exports and compare the two windows. Neither snapshot exactly reproduces the original §11.6 table.
 
