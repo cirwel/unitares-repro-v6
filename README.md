@@ -1,5 +1,7 @@
 ---
-license: cc-by-4.0
+license:
+- cc-by-4.0
+- apache-2.0
 language:
 - en
 size_categories:
@@ -23,7 +25,7 @@ Reproducibility artifacts for §11.6 of *UNITARES: Information-Theoretic Governa
 - **Data DOI** (this release, v6.8.1-repro): [10.5281/zenodo.19705151](https://doi.org/10.5281/zenodo.19705151)
 - **GitHub**: [cirwel/unitares-repro-v6](https://github.com/cirwel/unitares-repro-v6)
 - **Source**: UNITARES production governance database, 30-day rolling window of `core.agent_state`
-- **License**: CC-BY-4.0 (same as paper)
+- **License**: code under Apache-2.0; data and documentation under CC-BY-4.0 (see [License](#license))
 
 ## What this is
 
@@ -111,6 +113,18 @@ at `analysis/phase-2-2026-04-18/reproduce_basinflip.py`; it returns 28.84% with
 - Fleet composition is UNITARES-specific (five resident agents + ephemeral coding assistants + embodied Lumen). The absolute flip rates are not directly transferable to other fleets; the *method* is.
 - Paper §12.5 (write-path hygiene) and §11.7 (identity system maturity) describe known caveats in the underlying trajectory data. Read both sections before citing these numbers in derivative work.
 - Class-conditional calibration constants in the script are frozen at v6.8 submission. Regenerating the 2026-04-23 snapshot against the *current* production calibration (not frozen) would yield a different number — holding these constants fixed removes recalibration as a changing input between the two exports, but does not identify the cause of their difference.
+
+## License
+
+Copyright 2026 Kenny Wang. This repository is split by path:
+
+| Path | Contents | License |
+|---|---|---|
+| `analysis.py`, `scripts/` | Code | Apache-2.0 ([`LICENSE`](LICENSE)) |
+| `data/` | Data (the CSV exports) | CC-BY-4.0 ([`LICENSE-CC-BY-4.0`](LICENSE-CC-BY-4.0)) |
+| `README.md` | Documentation (this dataset card) | CC-BY-4.0 ([`LICENSE-CC-BY-4.0`](LICENSE-CC-BY-4.0)) |
+
+Files added later follow the same split: code under Apache-2.0; data, figures and documentation under CC-BY-4.0. The archived Zenodo release (v6.8.1-repro) keeps the license recorded on that deposit.
 
 ## Citation
 
